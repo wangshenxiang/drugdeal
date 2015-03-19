@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="drugdeal">
+    <resultMap type="User" id="UserResultMap">
+        <result column="user_id" property="id"/>
+        <result column="user_name" property="name"/>
+        <result column="user_pwd" property="pwd"/>
+        <result column="user_role" property="role"/>
+        <result column="real_name" property="realName"/>
+        <result column="memo" property="memo"/>
+    </resultMap>
+
+    <resultMap type="Drug" id="DrugResultMap">
+        <result column="drug_id" property="id"/>
+        <result column="drug_name" property="name"/>
+        <result column="drug_suoxie" property="suoxie"/>
+        <result column="drug_spec" property="spec"/>
+        <result column="drug_price" property="price"/>
+        <result column="drug_product" property="product"/>
+        <result column="drug_numbers" property="numbers"/>
+        <result column="memo" property="memo"/>
+    </resultMap>
+
+    <!-- 插入drug -->
+    <insert id="insertDrug" parameterType="Drug">
+      insert into
+      tab_drug (
+      drug_id, drug_name, drug_suoxie, drug_spec,
+      drug_price, drug_product, drug_numbers, memo)
+      values (#{id}, #{name}, #{suoxie}, #{spec},
+       #{price}, #{product}, #{numbers}, #{memo})
+    </insert>
+
+</mapper>
