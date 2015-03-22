@@ -25,12 +25,49 @@
 
     <!-- 插入drug -->
     <insert id="insertDrug" parameterType="Drug">
-      insert into
-      tab_drug (
-      drug_id, drug_name, drug_suoxie, drug_spec,
-      drug_price, drug_product, drug_numbers, memo)
-      values (#{id}, #{name}, #{suoxie}, #{spec},
-       #{price}, #{product}, #{numbers}, #{memo})
+        insert into
+        tab_drug (
+        drug_id, drug_name, drug_suoxie, drug_spec,
+        drug_price, drug_product, drug_numbers, memo)
+        values (#{id}, #{name}, #{suoxie}, #{spec},
+        #{price}, #{product}, #{numbers}, #{memo})
     </insert>
 
+    <!-- 根据id删除drug -->
+    <delete id="deleteDrug" parameterType="String">
+        delete from tab_drug where drug_id = #{id}
+    </delete>
+
+    <!-- 根据id更新drug -->
+    <update id="updateDrug" parameterType="Drug">
+        update tab_drug
+        set
+        drug_name = #{name}, drug_suoxie = #{suoxie},
+        drug_spec = #{spec}, drug_price = #{price},
+        drug_product = #{product}, drug_numbers = #{numbers},
+        memo = #{memo}
+        where drug_id = #{id}
+    </update>
+
+    <!-- 根据id查看药物 -->
+    <select id="readDrug" parameterType="String" resultMap="DrugResultMap">
+        select
+        drug_id, drug_name, drug_suoxie,
+        drug_spec, drug_price, drug_product,
+        drug_numbers, memo from tab_drug where drug_id = #{id}
+    </select>
+
+    <!-- 根据id查看药物是否存在 -->
+    <select id="isDrugExisted" parameterType="String" resultType="int">
+        select count(*) from tab_drug where drug_id = #{id}
+    </select>
+
+    <!-- 根据suoxie模糊查询药物 -->
+    <select id="blurReadDrugBySuoxie" parameterType="String" resultMap="DrugResultMap">
+        select
+        drug_id, drug_name, drug_suoxie,
+        drug_spec, drug_price, drug_product,
+        drug_numbers, memo from tab_drug
+        where drug_suoxie like #{suoxieStr}
+    </select>
 </mapper>

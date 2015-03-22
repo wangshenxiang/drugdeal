@@ -4,24 +4,24 @@ package me.wsx.drugdeal.persist.model;
  * Created by wangshenxiang on 15-3-19.
  */
 public class Drug {
-    private int id;
+    private String id;
     private String name;
     //名称缩写(拼音的首字母大写)
     private String suoxie;
     //药品规格
     private String spec;
-    private float price;
+    private double price;
     //生产厂家
     private String product;
     //药品数量
     private int numbers;
     private String memo;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -49,11 +49,11 @@ public class Drug {
         this.spec = spec;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

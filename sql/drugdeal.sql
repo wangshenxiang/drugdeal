@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS `drugdealdb` DEFAULT CHARACTER SET utf8;
 USE `drugdealdb`;
 
 create table if not exists `drugdealdb`.`tab_drug` (
-  `drug_id`      BIGINT(20)     NOT NULL,
+  `drug_id`      varchar(30)    NOT NULL,
   `drug_name`    VARCHAR(30)    NOT NULL,
   `drug_suoxie`  VARCHAR(30)    NOT NULL,
   `drug_spec`    VARCHAR(30)    NOT NULL,
