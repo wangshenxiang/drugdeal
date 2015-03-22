@@ -4,7 +4,7 @@
     <script src="/drugdeal/resources/jquery/jquery-1.11.2.min.js"></script>
     <script src="/drugdeal/resources/bootstrap/js/bootstrap.min.js"></script>
     <script src="/drugdeal/resources/jquery-ui/jquery-ui.min.js"></script>
-    <script src="/drugdeal/resources/jquery-migrate-1.1.0.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
     <script src="/drugdeal/resources/drugdeal-js/drugdeal-js.js"></script>
     <script src="/drugdeal/resources/jquery.jqprint-0.3.js"></script>
     <link type="text/css" rel="stylesheet" href="/drugdeal/resources/bootstrap/css/bootstrap.min.css"/>
@@ -96,7 +96,6 @@
             deal.id = drug.id;
             deal.pickNum = pickNum;
             deal.name = drug.name;
-
             deals.push(deal);
             $('#numPrompt').css('display', 'none');
             $('#allNumbers').text(parseInt(drug.numbers)-pickNum);
@@ -123,33 +122,17 @@
                     num: deal.pickNum
                 },
                 success: function (ret) {
-                    log += drug.name + "库存量减" + pickNum + "\n";
+                    log += deal.name + "库存量减" + deal.pickNum + "\n";
                 }
             });
         });
         alert(log);
         $('#printArea').jqprint();
+        deals = [];
     }
 
     var printCancel = function() {
         $('#table').empty();
-        var log = "";
-        $.each(deals, function(i, deal) {
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: "/drugdeal/addDrugNumbers",
-                async: false,
-                data: {
-                    id:deal.id,
-                    num:deal.pickNum
-                },
-                success: function(ret) {
-                    log += deal.name + "库存量加" + deal.pickNum + "\n" ;
-                }
-            });
-        });
-        alert(log);
         deals = [];
         location.reload();
     }

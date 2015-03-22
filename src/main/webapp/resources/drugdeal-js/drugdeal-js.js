@@ -31,7 +31,7 @@ var isDrugExistedById = function(id) {
             }
         }
     });
-
+    return res;
 }
 
 var isDrugExisted = function (v) {
