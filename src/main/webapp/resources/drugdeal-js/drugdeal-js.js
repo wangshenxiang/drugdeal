@@ -85,13 +85,19 @@ function toPrice(v) {
         return;
     }
     var len = v.value.length;
-    if (v.value.substring(len-1,len) == '.') {
+    if (v.value.substring(len-1,len) == '.'
+        || v.value.substring(len-2,len) == ".0"
+        || v.value.substring(len-3,len) == ".00") {
         return;
     }
     if (v.value.indexOf('.') != 0
         && v.value.indexOf('.') != -1
         && len - v.value.indexOf('.') > 3) {
         v.value = v.value.substring(0, len-1);
+    }
+    if( v.value.substring(len-4,len-1) == ".00") {
+        v.value = v.value.substring(0, len-1);
+        return;
     }
     v.value = parseFloat(v.value);
 }
