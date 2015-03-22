@@ -4,6 +4,7 @@
     <script src="/drugdeal/resources/jquery/jquery-1.11.2.min.js"></script>
     <script src="/drugdeal/resources/bootstrap/js/bootstrap.min.js"></script>
     <script src="/drugdeal/resources/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/drugdeal/resources/jquery-migrate-1.1.0.js"></script>
     <script src="/drugdeal/resources/drugdeal-js/drugdeal-js.js"></script>
     <script src="/drugdeal/resources/jquery.jqprint-0.3.js"></script>
     <link type="text/css" rel="stylesheet" href="/drugdeal/resources/bootstrap/css/bootstrap.min.css"/>
@@ -14,10 +15,10 @@
 <div class="container">
     <h3>生成药物单</h3>
     药物：<input id="search"/><br>
-    药品ID：<span id="drugId" ></span>
-    药品名：<span id="drugName" ></span>
-    药品规格：<span id="drugSpec" ></span>
-    药品单价：<span id="drugPrice" ></span>
+    药品ID：<span id="drugId" ></span><br>
+    药品名：<span id="drugName" ></span><br>
+    药品规格：<span id="drugSpec" ></span><br>
+    药品单价：<span id="drugPrice" ></span><br>
     当前剩余数量：<span id="allNumbers" style="color: red"></span><br>
     数量：<input id="pickNumbers" type="text" onkeyup="toInt(this)">
     <button id="confirm" onclick="addDealPost()">确认</button><br>
