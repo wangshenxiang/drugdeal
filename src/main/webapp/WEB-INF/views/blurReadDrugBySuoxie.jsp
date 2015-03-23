@@ -31,6 +31,7 @@
     </div>
     <button onclick="printDeal()">打印</button>
     <button onclick="printCancel()">取消</button>
+    <a href="/drugdeal">home</a>
 </div>
 <script>
     $(function() {

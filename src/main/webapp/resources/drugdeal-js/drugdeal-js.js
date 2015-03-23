@@ -34,6 +34,23 @@ var isDrugExistedById = function(id) {
     return res;
 }
 
+var readAllDrug = function(tab) {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "/drugdeal/readAllDrug",
+        async: false,
+        success: function (ret) {
+            $.each(ret, function(i, e) {
+                $(tab).append("<tr><td>"+ e.id +"</td><td>"
+                    + e.name +"</td><td>"+ e.spec +"</td><td>"
+                    + e.product +"</td><td>"+ e.price +"</td><td>"
+                    + e.numbers +"</td><td>"+ e.memo +"</td></tr>");
+            })
+        }
+    });
+}
+
 var isDrugExisted = function (v) {
     if (v.value == '') {
         return false;

@@ -60,4 +60,8 @@ public class DaoImp {
         String suoxieStr = "%"+suoxie+"%";
         return (List<Drug>)sqlSessionTemplate.selectList("blurReadDrugBySuoxie", suoxieStr);
     }
+
+    public List<Drug> readAllDrug() {
+        return (List<Drug>)sqlSessionTemplate.selectList("readAllDrug");
+    }
 }

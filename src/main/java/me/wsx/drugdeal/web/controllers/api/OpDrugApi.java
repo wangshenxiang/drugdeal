@@ -25,6 +25,11 @@ public class OpDrugApi {
         return daoImp.readDrug(id);
     }
 
+    @RequestMapping(value = "/readAllDrug", method = RequestMethod.GET)
+    public List<Drug> readAllDrug() {
+        return daoImp.readAllDrug();
+    }
+
     @RequestMapping(value = "/isDrugExisted", method = RequestMethod.GET)
     public int isDrugExisted(String id) {
         return daoImp.isDrugExisted(id);

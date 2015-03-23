@@ -70,4 +70,13 @@
         drug_numbers, memo from tab_drug
         where drug_suoxie like #{suoxieStr}
     </select>
+
+    <!-- 查看全部药物 -->
+    <select id="readAllDrug" resultMap="DrugResultMap">
+        select
+        drug_id, drug_name, drug_suoxie,
+        drug_spec, drug_price, drug_product,
+        drug_numbers, memo
+        from tab_drug
+    </select>
 </mapper>

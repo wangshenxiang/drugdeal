@@ -15,5 +15,6 @@
 <a href="/drugdeal/route/updateDrug">2、修改药物</a>
 <a href="/drugdeal/route/deleteDrug">3、删除药物</a>
 <a href="/drugdeal/route/blurReadDrugBySuoxie">4、生成药物单</a>
+<a href="/drugdeal/route/readAllDrug">5、查看药物</a>
 </body>
 </html>

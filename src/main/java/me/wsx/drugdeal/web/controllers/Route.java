@@ -34,4 +34,10 @@ public class Route {
     public String blurReadDrugBySuoxie() {
         return "blurReadDrugBySuoxie";
     }
+
+    @RequestMapping(value = "/route/readAllDrug", method = RequestMethod.GET)
+    public String readAllDrug() {
+        return "readAllDrug";
+    }
+
 }
