@@ -7,7 +7,7 @@
     <title>查看药物</title>
 </head>
 <body>
-    <table id ="table"></table>
+    <table id ="table" class="table"></table>
     <a href="/drugdeal">home</a>
 <script>
     readAllDrug("#table");

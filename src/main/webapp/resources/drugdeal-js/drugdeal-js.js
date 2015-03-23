@@ -41,6 +41,7 @@ var readAllDrug = function(tab) {
         url: "/drugdeal/readAllDrug",
         async: false,
         success: function (ret) {
+            $(tab).append("<tr><td>药品id</td><td>药品名</td><td>药品规格</td><td>药品生产厂家</td><td>药品单价</td><td>药品库存数量</td><td>药品备注</td></tr>");
             $.each(ret, function(i, e) {
                 $(tab).append("<tr><td>"+ e.id +"</td><td>"
                     + e.name +"</td><td>"+ e.spec +"</td><td>"

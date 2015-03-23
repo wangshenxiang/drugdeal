@@ -14,7 +14,7 @@
 <body>
 <div class="container">
     <h3>生成药物单</h3>
-    药物：<input id="search"/><br>
+    药物缩写：<input id="search"/><br>
     药品ID：<span id="drugId" ></span><br>
     药品名：<span id="drugName" ></span><br>
     药品规格：<span id="drugSpec" ></span><br>
@@ -129,6 +129,7 @@
         });
         alert(log);
         $('#printArea').jqprint();
+        $('#table').empty();
         deals = [];
     }
 
