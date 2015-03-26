@@ -12,7 +12,7 @@
         药品id：<input id="id" type="text" name="id" onblur="notExisted(this)">
         <span id="idPrompt" style="display: none"></span><br>
         药品名：<input id="name" type="text" name="name"><br>
-        药品名缩写：<input id="suoxie" type="text" onKeyUp="upCase(this)" name="suoxie"><br>
+        药品名缩写：<input id="suoxie" type="text" onKeyUp="upCase(this)" onblur="upCase(this)" name="suoxie"><br>
         药品规格：<input id="spec" type="text" name="spec"><br>
         药品价格：<input id="price" type="text" name="price" onKeyUp="toPrice(this)"><br>
         药品生产厂家：<input id="product" type="text" name="product"><br>

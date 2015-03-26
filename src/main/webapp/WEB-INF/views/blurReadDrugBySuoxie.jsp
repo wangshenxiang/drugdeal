@@ -9,12 +9,12 @@
     <script src="/drugdeal/resources/jquery.jqprint-0.3.js"></script>
     <link type="text/css" rel="stylesheet" href="/drugdeal/resources/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/drugdeal/resources/jquery-ui/jquery-ui.min.css"/>
-    <title>生成药物单</title>
+    <title>唐都医院便民药房</title>
 </head>
 <body>
 <div class="container">
     <h3>生成药物单</h3>
-    药物缩写：<input id="search"/><br>
+    药物缩写：<input id="search"/><button onclick="javascript:location.reload();">清空</button><br>
     药品ID：<span id="drugId" ></span><br>
     药品名：<span id="drugName" ></span><br>
     药品规格：<span id="drugSpec" ></span><br>
@@ -24,10 +24,17 @@
     <button id="confirm" onclick="addDealPost()">确认</button><br>
     <span id="numPrompt" style="display: none"></span>
     <p></p>
+    患者姓名：<input type="text" id="iuName"><br>
+    开票人：<input type="text" id="ikName"><br>
+    <button onclick="putOtherInfo()">确认附加信息</button>
     <div id="printArea">
+    <div class="h2" align="center"><b>唐都医院便民药房</b>售药交款单</div><br>
+    <span>姓名：</span><span id="uName"></span>
     <table class="table table-bordered" id="table">
         <tr><td>药品名称</td><td>规格</td><td>数量</td><td>金额</td></tr>
     </table>
+    <span>开票人：</span><span id="kName"></span><br>
+    <span>开票日期：</span><span id="kDate"></span><br>
     </div>
     <button onclick="printDeal()">打印</button>
     <button onclick="printCancel()">取消</button>
@@ -99,7 +106,6 @@
             deal.name = drug.name;
             deals.push(deal);
             $('#numPrompt').css('display', 'none');
-            $('#allNumbers').text(parseInt(drug.numbers)-pickNum);
             $('#table').append("<tr class=\"tr\"><td>" + drug.name + "</td><td>" + drug.spec + "</td><td>"
                     + pickNum + "</td><td>" + parseFloat(drug.price)*parseInt(pickNum) + "</td></tr>");
             dealNum++;
@@ -112,24 +118,9 @@
 
     var printDeal = function() {
         var log = "";
-        $.each(deals, function(i, deal) {
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: "/drugdeal/subDrugNumbers",
-                async: false,
-                data: {
-                    id: deal.id,
-                    num: deal.pickNum
-                },
-                success: function (ret) {
-                    log += deal.name + "库存量减" + deal.pickNum + "\n";
-                }
-            });
-        });
-        alert(log);
         $('#printArea').jqprint();
         $('#table').empty();
+        $('#table').append("<tr><td>药品名称</td><td>规格</td><td>数量</td><td>金额</td></tr>");
         deals = [];
     }
 
@@ -137,6 +128,35 @@
         $('#table').empty();
         deals = [];
         location.reload();
+    }
+
+    var putOtherInfo = function() {
+        $('#uName').empty();
+        $('#uName').html($('#iuName').val());
+        $('#kName').html($('#ikName').val());
+        var dt = new Date();
+        var nowDT = dt.format('yyyy-MM-dd');
+        $('#kDate').html(nowDT);
+    }
+
+    Date.prototype.format = function(format)
+    {
+        var o = {
+            "M+" : this.getMonth()+1, //month
+            "d+" : this.getDate(),    //day
+            "h+" : this.getHours(),   //hour
+            "m+" : this.getMinutes(), //minute
+            "s+" : this.getSeconds(), //second
+            "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+            "S" : this.getMilliseconds() //millisecond
+        }
+        if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+                (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        for(var k in o)if(new RegExp("("+ k +")").test(format))
+            format = format.replace(RegExp.$1,
+                            RegExp.$1.length==1 ? o[k] :
+                            ("00"+ o[k]).substr((""+ o[k]).length));
+        return format;
     }
 
 </script>
